@@ -8,8 +8,18 @@ public class Audience {
         this.bag = bag;
     }
 
-    public Bag getBag()
+    public Long buy(Ticket ticket)
     {
-        return bag;
+        if(bag.hasInvitation())
+        {
+            bag.setTicket(ticket);
+            return 0L;
+        }
+        else
+        {
+            bag.minusAmount(ticket.getFee());
+            bag.plusAmount(ticket.getFee());
+            return ticket.getFee();
+        }
     }
 }
